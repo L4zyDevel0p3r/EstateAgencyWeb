@@ -1,0 +1,164 @@
+{% extends "shared/_MainLayout.html" %}
+{% load static %}
+
+{% block title %}املاک رشت{% endblock %}
+
+{% block content %}
+    <!--/ Property Start /-->
+    <div>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <section class="section-property section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between dir-rtl">
+                        <div class="title-box">
+                            <h2 class="title-a" id="premium">آگهی های ویژه</h2>
+                        </div>
+                        <div class="title-link">
+                            <a href="{% url "EstateApp:estate_list_special" %}">همه آگهی ها
+                                <span class="ion-ios-arrow-back"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="property-carousel" class="owl-carousel owl-theme">
+                {% for special_ad in special_ads|slice:":6" %}
+                    <div class="carousel-item-b">
+                        {% include "components/estate_item.html" with estate=special_ad %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--/ Property End /-->
+
+    <section class="section-property section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">آخرین املاک</h2>
+                        </div>
+                        <div class="title-link">
+                            <a href="{% url "EstateApp:estate_list" %}">همه املاک
+                                <span class="ion-ios-arrow-back"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="property-carousel-two" class="owl-carousel owl-theme">
+                {% for estate in object_list|slice:":6" %}
+                    <div class="carousel-item-b">
+                        {% include "components/estate_item.html" with estate=estate %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--/ Property End /-->
+
+
+
+    <!--/ Services Start /-->
+    <section class="section-services section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">خدمات ما</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="fa fa-plus-square"></span>
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">ثبت املاک شما</h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                همه نوع ملک از قبیل مغازه ، زمین ، آپارتمان و...
+
+                                و فقط املاک مربوط به حومه شهرستان رشت
+
+                                در وبسایت ما
+
+                                ثبت میگردد
+
+                            </p>
+                        </div>
+                        <div class="card-footer-c">
+                            <a href="{% url "ContactApp:ContactUs" %}" class="link-c link-icon">درخواست ثبت آگهی
+                                <span class="ion-ios-arrow-forward"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="fa fa-handshake-o"></span>
+
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">همکاری </h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                همکاری با مشاورین املاک رشت
+                                جهت ثبت املاک و رشد کار و کسب
+
+                            </p>
+                        </div>
+                        <!-- <div class="card-footer-c">
+                          <a href="#" class="link-c link-icon">Read more
+                            <span class="ion-ios-arrow-forward"></span>
+                          </a>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-box-c foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-box-ico">
+                                <span class="fa fa-clock-o"></span>
+                            </div>
+                            <div class="card-title-c align-self-center">
+                                <h2 class="title-c">پشتیبانی 24 ساعته</h2>
+                            </div>
+                        </div>
+                        <div class="card-body-c">
+                            <p class="content-c">
+                                پشتیبانی 24 ساعته توسط متخصصین
+
+                            </p>
+                        </div>
+                        <!-- <div class="card-footer-c">
+                          <a href="#" class="link-c link-icon">Read more
+                            <span class="ion-ios-arrow-forward"></span>
+                          </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Services End /-->
+{% endblock %}

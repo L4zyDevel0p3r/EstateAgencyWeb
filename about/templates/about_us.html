@@ -1,0 +1,95 @@
+{% extends "shared/_MainLayout.html" %}
+{% load static %}
+
+{% block title %}درباره ما{% endblock %}
+
+{% block header_ref %}
+    <link rel="stylesheet" href="{% static "lib/boxicons/css/boxicons.min.css" %}">
+{% endblock %}
+
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">درباره ما</h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">صفحه اصلی</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                درباره ما
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ About Star /-->
+    <section class="section-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="about-img-box">
+                        <img src="{{ about_us.image.url }}" alt="{{ about_us.title }}" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-12 section-t8">
+                    <div class="text-right" style="direction: rtl;">
+                        <div class="title-box-d">
+                            <h3 class="title-d">
+                                <span class="color-d">{{ about_us.title }}</span>
+                            </h3>
+                        </div>
+                        <div class="color-text-a">
+                            {{ about_us.description|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ About End /-->
+
+
+    <section class="techs section-t4">
+        <div class="container-fluid">
+            <div class="col">
+                <div class="col-sm-12">
+                    <h3 class="title-single">تکنولوژی های استفاده شده در این وبسایت</h3>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-html5"></i>
+                        </div>
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-css3"></i>
+                        </div>
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-javascript"></i>
+                        </div>
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-bootstrap"></i>
+                        </div>
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-python"></i>
+                        </div>
+                        <div class="col-md-4 col-sm-10">
+                            <i class="bx bxl-django"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

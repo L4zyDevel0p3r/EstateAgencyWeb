@@ -1,0 +1,52 @@
+{% load thumbnail %}
+
+
+<div class="card-box-a card-shadow">
+    <div class="img-box-a">
+        {% thumbnail estate.img1 "350x467" crop="center" as img %}
+            <img src="{{ img.url }}" alt="{{ estate.title }}" width="{{ img.width }}" height="{{ img.height }}"
+                 class="img-a img-fluid">
+        {% endthumbnail %}
+    </div>
+    <div class="card-overlay">
+        <div class="card-overlay-a-content">
+            <div class="card-header-a">
+                <h2 class="card-title-a">
+                    <a href="{{ estate.get_absolute_url }}">{{ estate.title }}</a>
+                </h2>
+            </div>
+            <div class="card-body-a">
+                <div class="price-box d-flex">
+                    <span class="price-a">قیمت {{ estate.price }}</span>
+                </div>
+                <a href="{{ estate.get_absolute_url }}" class="link-a">جزییات بیشتر
+                    <span class="ion-ios-arrow-forward"></span>
+                </a>
+            </div>
+            <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around">
+                    <li>
+                        <h4 class="card-info-title">متراژ</h4>
+                        <span>{{ estate.area }}</span>
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">اتاق</h4>
+                        {% with room=estate.room %}
+                            <span>{% if room %}{{ room }}{% else %}ندارد{% endif %}</span>
+                        {% endwith %}
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">پارکینگ</h4>
+                        {% with parking=estate.parking %}
+                            <span>{% if parking %}{{ parking }}{% else %}ندارد{% endif %}</span>
+                        {% endwith %}
+                    </li>
+                    <li>
+                        <h4 class="card-info-title">سال ساخت</h4>
+                        <span>{{ estate.year_of_construction }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+{% extends "shared/_MainLayout.html" %}
+
+{% block title %}لیست املاک{% endblock %}
+
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">لیست املاک</h1>
+                        <span class="color-text-a">همه املاک موجود در وبسایت</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">صفحه اصلی</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                لیست املاک
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ Property Grid Star /-->
+    <section class="property-grid grid">
+        <div class="container">
+            {% if page_obj|length > 0 %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="grid-option">
+                            <form method="get">
+                                <button type="submit" class="btn btn-success">اعمال</button>
+                                {% with filter_by=request.GET.filter_by %}
+                                    <select name="filter_by" class="custom-select">
+                                        <option value="all"
+                                                {% if filter_by == "all" %}selected{% endif %}>همه
+                                        </option>
+                                        <option value="newest"
+                                                {% if filter_by == "newest" %}selected{% endif %}>جدید ترین
+                                        </option>
+                                        <option value="oldest"
+                                                {% if filter_by == "oldest" %}selected{% endif %}>قدیمی ترین
+                                        </option>
+                                        <option value="rent"
+                                                {% if filter_by == "rent" %}selected{% endif %}>اجاره
+                                        </option>
+                                        <option value="mortgage"
+                                                {% if filter_by == "mortgage" %}selected{% endif %}>رهن
+                                        </option>
+                                        <option value="sale"
+                                                {% if filter_by == "sale" %}selected{% endif %}>فروش
+                                        </option>
+                                    </select>
+                                {% endwith %}
+                                {% if request.GET.q %}
+                                    <input type="hidden" name="q" value="{{ request.GET.q }}">
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+
+                    {% for object in page_obj %}
+                        <div class="col-md-4">
+                            {% include "components/estate_item.html" with estate=object %}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav class="pagination-a">
+                            <ul class="pagination justify-content-end">
+                                {% with filter_by=request.GET.filter_by q=request.GET.q %}
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="?page={{ page_obj.previous_page_number }}{% if filter_by %}&filter_by={{ filter_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}"
+                                               tabindex="-1">
+                                                <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for page in paginator.page_range %}
+                                        <li class="page-item {% if page_obj.number == page %}active{% endif %}">
+                                            <a class="page-link"
+                                               href="?page={{ page }}{% if filter_by %}&filter_by={{ filter_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}">{{ page }}</a>
+                                        </li>
+                                    {% endfor %}
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item next">
+                                            <a class="page-link"
+                                               href="?page={{ page_obj.next_page_number }}{% if filter_by %}&filter_by={{ filter_by }}{% endif %}{% if q %}&q={{ q }}{% endif %}">
+                                                <span class="ion-ios-arrow-back"></span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endwith %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-info text-center">
+                    <p>این صفحه خالیه.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <!--/ Property Grid End /-->
+{% endblock %}

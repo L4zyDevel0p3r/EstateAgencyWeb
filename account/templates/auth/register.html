@@ -1,0 +1,60 @@
+{% url "AccountApp:Login" as login_page_url %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "auth/css/styles.css" %}">
+    <title>ثبت نام</title>
+</head>
+
+<body>
+<div class="login-page">
+    <div class="form">
+        <div class="alert hide"></div>
+        <h1 class="heading">ثبت نام</h1>
+        <form method="post" enctype="multipart/form-data" class="register-form" name="myForm">
+            {% csrf_token %}
+            {% render_field form.username placeholder=form.username.label %}
+            {% for error in form.username.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            {% render_field form.advisor_name placeholder=form.advisor_name.label %}
+            {% for error in form.advisor_name.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            {% render_field form.email placeholder=form.email.label %}
+            {% for error in form.email.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            {% render_field form.password1 placeholder=form.password1.label %}
+            {% for error in form.password1.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            {% render_field form.password2 placeholder=form.password2.label %}
+            {% for error in form.password2.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            <label for="agency-img">{{ form.logo.label }}</label>
+            {{ form.logo }}
+            {% for error in form.logo.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            <button type="submit">ایجاد حساب کاربری</button>
+            <p class="message">حساب کاربری دارید؟ <a href="{{ login_page_url }}">وارد شوید</a></p>
+        </form>
+    </div>
+</div>
+<script src="{% static "lib/jquery/jquery.min.js" %}"></script>
+</body>
+</html>

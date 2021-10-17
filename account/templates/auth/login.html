@@ -1,0 +1,42 @@
+{% url "AccountApp:Register" as register_page_url %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "auth/css/styles.css" %}">
+    <title>ورود</title>
+</head>
+
+<body>
+<div class="login-page">
+    <div class="form">
+        <div class="alert hide"></div>
+        <h1 class="heading">ورود</h1>
+
+        <form method="post" name="myForm" class="login-form">
+            {% csrf_token %}
+            <h1 class="heading2"></h1>
+            {% render_field form.username placeholder="نام کاربری" %}
+            {% for error in form.username.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            {% render_field form.password placeholder="رمز عبور" %}
+            {% for error in form.password.errors %}
+                <p class="alert">{{ error }}</p>
+            {% endfor %}
+
+            <button type="submit">ورود</button>
+            <p class="message"><a href="forgot.html">رمز عبورم را فراموش کرده ام</a></p>
+            <p class="message">حساب کاربری ندارید؟ <a href="{{ register_page_url }}">ثبت نام کنید</a></p>
+        </form>
+    </div>
+</div>
+<script src="{% static "lib/jquery/jquery.min.js" %}"></script>
+</body>
+</html>

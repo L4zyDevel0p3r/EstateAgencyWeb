@@ -1,0 +1,78 @@
+@font-face {
+    font-family: classic;
+    src: url('../../lib/font/Yekan Bakh.ttf');
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #76b852;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: classic, sans-serif;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1;
+    width: 500px;
+    padding: 50px;
+    direction: rtl;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.form input {
+    font-family: classic, sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 80%;
+    border: 1px solid #4CAF50;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 8px;
+    text-align: right;
+}
+
+.form button {
+    font-family: classic;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 300px;
+    margin-right: 5px;
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 25px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .form {
+        width: 220px;
+        height: 200px;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 539px) {
+    .form {
+        width: 220px;
+        height: 200px;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+}

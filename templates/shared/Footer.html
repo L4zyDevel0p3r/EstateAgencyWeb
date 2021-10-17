@@ -1,0 +1,56 @@
+{% url "EstateApp:estate_list" as estate_list_url %}
+{% url "ContactApp:ContactUs" as contact_url %}
+{% url "AboutUsApp:about_us" as about_url %}
+{% url "HomePage" as home_url %}
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="direction: ltr;">
+                <nav class="nav-footer">
+                    <ul class="list-inline">
+
+                        <li class="list-inline-item">
+                            <a href="{{ home_url }}">صفحه اصلی</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{ estate_list_url }}">لیست املاک</a>
+                        </li>
+
+                        <li class="list-inline-item">
+                            <a href="{{ contact_url }}">ثبت املاک</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{ about_url }}">درباره</a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <div class="socials-a">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{{ social_network.whatsapp }}">
+                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/{{ social_network.instagram }}">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="copyright-footer">
+                    <p class="copyright color-text-a">
+                        &copy;
+                        <span class="color-a">املاک رشت</span>
+                    </p>
+                </div>
+                <div class="credits">
+                    Designed by <a href="">SpiDev Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
