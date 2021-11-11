@@ -116,7 +116,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-md-6">
-                            <img src="{% static "img/post-1.jpg" %}" alt="" class="img-fluid">
+                            <img src="{{ object.advisor.logo.url }}" alt="{{ object.advisor.advisor_name }}"
+                                 class="img-fluid">
                         </div>
                         <div class="col-md-6 col-lg-4">
                             <div class="property-agent">
@@ -129,19 +130,28 @@
                                 <ul class="list-unstyled" style="direction: rtl;">
                                     <li class="d-flex justify-content-between">
                                         <strong>تلفن :</strong>
-                                        <span class="color-text-a">013 33425050</span>
+                                        <span class="color-text-a">
+                                            {% if object.advisor.phone %}{{ object.advisor.phone }}{% else %}
+                                                ...{% endif %}
+                                        </span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>همراه :</strong>
-                                        <span class="color-text-a">09112301230</span>
+                                        <span class="color-text-a">
+                                            {% if object.advisor.mobile %}{{ object.advisor.mobile }}{% else %}
+                                                ...{% endif %}
+                                        </span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>آدرس :</strong>
-                                        <span class="color-text-a">خیابان توحید ، بلوار توحید ، کوچه توحید</span>
+                                        <span class="color-text-a">
+                                            {% if object.advisor.address %}{{ object.advisor.address }}{% else %}
+                                                ...{% endif %}
+                                        </span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>نام مشاور املاک :</strong>
-                                        <span class="color-text-a">لورم ایپسوم تست</span>
+                                        <span class="color-text-a">{{ object.advisor.advisor_name }}</span>
                                     </li>
                                 </ul>
                             </div>
