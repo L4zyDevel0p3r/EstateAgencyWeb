@@ -1,7 +1,9 @@
+from utilities.validators import validate_image_size
 from django.db.models.signals import pre_delete
 from ckeditor.fields import RichTextField
 from utilities.files import upload_file
 from django.dispatch import receiver
+from django.core import validators
 from django.urls import reverse
 from account.models import User
 from django.db.models import Q
@@ -43,6 +45,11 @@ class Estate(models.Model):
         ("فروش", "فروش")
     ]
 
+    IMAGE_FIELD_VALIDATORS = [
+        validators.FileExtensionValidator(allowed_extensions=["PNG", "JPG", "JPEG"]),
+        lambda image: validate_image_size(image, 2)
+    ]
+
     advisor = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="مشاور")
     title = models.CharField(max_length=50, verbose_name="عنوان")
     price = models.CharField(max_length=50, verbose_name="قیمت")
@@ -54,12 +61,15 @@ class Estate(models.Model):
     parking = models.PositiveSmallIntegerField(verbose_name="تعداد پارکینگ")
     year_of_construction = models.PositiveSmallIntegerField(verbose_name="سال ساخت")
     address = models.CharField(max_length=50, verbose_name="آدرس")
-    img1 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 1")
-    img2 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 2")
-    img3 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 3")
-    img4 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 4")
-    img5 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 5")
-    img6 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 6")
+    img1 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 1", validators=IMAGE_FIELD_VALIDATORS)
+    img2 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 2", validators=IMAGE_FIELD_VALIDATORS)
+    img3 = models.ImageField(upload_to=upload_image, verbose_name="تصویر 3", validators=IMAGE_FIELD_VALIDATORS)
+    img4 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 4",
+                             validators=IMAGE_FIELD_VALIDATORS)
+    img5 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 5",
+                             validators=IMAGE_FIELD_VALIDATORS)
+    img6 = models.ImageField(upload_to=upload_image, null=True, blank=True, verbose_name="تصویر 6",
+                             validators=IMAGE_FIELD_VALIDATORS)
     description = RichTextField(verbose_name="توضیحات")
     is_special_ad = models.BooleanField(default=False, verbose_name="آگهی ویژه")
     slug = models.SlugField(default=generate_slug, unique=True, editable=False, verbose_name="Slug")
