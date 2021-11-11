@@ -1,7 +1,9 @@
+from utilities.validators import validate_image_size
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import pre_delete
 from utilities.files import upload_file
 from django.dispatch import receiver
+from django.core import validators
 from django.db import models
 
 
@@ -13,7 +15,10 @@ def upload_logo(instance, file):
 
 class User(AbstractUser):
     advisor_name = models.CharField(max_length=25, null=True, verbose_name="نام مشاور")
-    logo = models.ImageField(upload_to=upload_logo, null=True, verbose_name="لوگوی بنگاه")
+    logo = models.ImageField(upload_to=upload_logo, null=True, verbose_name="لوگوی بنگاه", validators=[
+        validators.FileExtensionValidator(allowed_extensions=["PNG", "JPG", "JPEG"]),
+        lambda image: validate_image_size(image, 2)
+    ])
     phone = models.CharField(max_length=11, null=True, blank=True, verbose_name="تلفن")
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="همراه")
     address = models.CharField(max_length=50, null=True, blank=True, verbose_name="آدرس")
