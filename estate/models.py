@@ -97,8 +97,6 @@ class Estate(models.Model):
 
 @receiver(signal=pre_delete, sender=Estate)
 def estate_pre_delete_receiver(sender, instance, *args, **kwargs):
-    image_list = [instance.img1, instance.img2, instance.img3, instance.img4, instance.img5, instance.img6]
-
-    for img in image_list:
+    for img in instance.get_images_list():
         if img:
             img.delete(save=False)
