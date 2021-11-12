@@ -49,13 +49,10 @@ class EstateDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         obj = context.get("object")
-        # Yek list az image hayi ke object dare misazim
-        obj_image_list = [obj.img1, obj.img2, obj.img3, obj.img4, obj.img5, obj.img6]
 
         context.update({
-            # Yek list az image hayi ke toye obj_image_list hastan misazim ke meghdareshon None nabashe
-            # va be context ezafe mikonim.
-            "object_image_list": [img for img in obj_image_list if img]
+            # Yek list az image haye object misazim ke meghdareshon None nabashe va be context ezafe mikonim.
+            "object_image_list": [img for img in obj.get_images_list() if img]
         })
 
         return context
