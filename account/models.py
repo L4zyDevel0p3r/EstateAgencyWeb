@@ -13,11 +13,15 @@ def upload_logo(instance, file):
     return upload_file(file, f"logo/{instance.username}")
 
 
+def validate_logo_size(image):
+    validate_image_size(image, 2)
+
+
 class User(AbstractUser):
     advisor_name = models.CharField(max_length=25, null=True, verbose_name="نام مشاور")
     logo = models.ImageField(upload_to=upload_logo, null=True, verbose_name="لوگوی بنگاه", validators=[
         validators.FileExtensionValidator(allowed_extensions=["PNG", "JPG", "JPEG"]),
-        lambda image: validate_image_size(image, 2)
+        validate_logo_size
     ])
     phone = models.CharField(max_length=11, null=True, blank=True, verbose_name="تلفن")
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name="همراه")
