@@ -18,6 +18,10 @@ def upload_image(instance, file):
     return upload_file(file, f"estate/{instance.advisor.username}")
 
 
+def validate_img_size(image):
+    validate_image_size(image, 2)
+
+
 def generate_slug():
     return (str(uuid4()).split("-"))[0]
 
@@ -47,7 +51,7 @@ class Estate(models.Model):
 
     IMAGE_FIELD_VALIDATORS = [
         validators.FileExtensionValidator(allowed_extensions=["PNG", "JPG", "JPEG"]),
-        lambda image: validate_image_size(image, 2)
+        validate_img_size
     ]
 
     advisor = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="مشاور")
