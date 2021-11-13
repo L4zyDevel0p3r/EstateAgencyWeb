@@ -85,7 +85,7 @@ class Estate(models.Model):
         return reverse("EstateApp:estate_detail", kwargs={"slug": self.slug})
 
     def get_images_list(self):
-        return [self.img1, self.img2, self.img3, self.img4, self.img5, self.img6]
+        return self.img1, self.img2, self.img3, self.img4, self.img5, self.img6
 
     def __str__(self):
         return self.title
