@@ -81,6 +81,22 @@ class Estate(models.Model):
 
     objects = EstateManager()
 
+    def save(self, *args, **kwargs):
+        try:
+            this = Estate.objects.get(pk=self.pk)
+
+            for item in zip(this.get_images_list(), self.get_images_list()):
+                # item[0] -> Image field az ghabl save shode
+                # item[1] -> Current image field e instance
+                if item[0] != item[1] and item[0]:
+                    # Age meghdar image field i ke az ghabl save shode ba current image field e instance yeki nabod
+                    # va meghdar image field az ghabl save shode 'None' nabod, image ghabli delete mishe.
+                    item[0].delete(save=False)
+        except:
+            pass
+
+        super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse("EstateApp:estate_detail", kwargs={"slug": self.slug})
 
