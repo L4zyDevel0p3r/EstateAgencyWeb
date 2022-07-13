@@ -37,9 +37,5 @@ def footer(request):
 
     return render(request, "shared/Footer.html", context)
 
-# todo: piade sazi page darbare ma - ✅,
-#  fix kardan link WhatsApp dar footer,
-#  piade sazi bakhsh moshaver amlak dar estate detail,
-#  piade sazi login/register - ✅,
-#  ijad image size va extension validator baraye field logo user va image field haye estate,
+# todo: fix kardan link WhatsApp dar footer,
 #  taghir template admin.
